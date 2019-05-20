@@ -1,0 +1,26 @@
+clc;
+clear all;
+close all;
+testimg = imread('Brain1.jpg');
+L = imsegkmeans(testimg,5);
+mask1 = L==4;
+cluster1 = testimg .* uint8(mask1);
+figure;
+imshow(cluster1);
+figure (2);
+B = labeloverlay(testimg,L);
+imshow(B)
+testbw = im2bw(rgb2gray(cluster1));
+label = bwlabel(testbw);
+stats = regionprops(label, 'Solidity', 'Area');
+density = [stats.Solidity];
+area = [stats.Area];
+high_dense_area = density > 0.5;
+max_area = max(area(high_dense_area));
+tumour_label = find(area == max_area);
+tumour = ismember(label, tumour_label);
+rgbTumour = testimg.*uint8(tumour);
+figure(3);
+imshow(tumour);
+figure(4);
+imshow(rgbTumour);
