@@ -1,1 +1,2 @@
-"# Dissertation-Project" 
+# Dissertation-Project
+"This project is a combination of matlab scripts used for analysing MRI images. The scripts process the image before locating the tumour. This tumour is then process using further image processing techniques before statistical analysis is performed. The aim was to establish a correlation between various statistics/properties of the tumour and the actual grade of the tumour (high/low)."
